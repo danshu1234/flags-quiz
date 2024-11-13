@@ -1,0 +1,1 @@
+export const FirstCountries: string[] = ['China', 'Canada', 'Mexico', 'France', 'Greece', 'Brazil', 'Ukraine', 'Norway', 'Spain', 'Sweden', 'Argentina', 'Turkey']
