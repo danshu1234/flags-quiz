@@ -1,17 +1,22 @@
 'use client'
 
 import { FC, useEffect, useState } from "react";
+import './level.css'
+import { useDispatch } from "react-redux";
 
 interface Props {
     img: string,
     country: string,
     arrCountries: string[],
+    setQues: Function,
+    ques: number,
 }
 
 const Level: FC <Props> = (props) => {
 
     const [randomList, setRandomList] = useState <string[]> ([])
-    const [right, setRight] = useState <string> ('')
+    const [ask, setAsk] = useState <boolean> (false)
+    const dispatch = useDispatch()
  
     useEffect(() => {
         const newRandomList: string[] = [props.country]
@@ -29,7 +34,6 @@ const Level: FC <Props> = (props) => {
                 newRandomList.push(filteredArr[randomNum])
             }         
         }
-        console.log(newRandomList)
         const resultList: string[] = []
         for (let i = 0; i < 4; i++) {
             if (i === 0) {
@@ -39,7 +43,6 @@ const Level: FC <Props> = (props) => {
                 const filteredArr = newRandomList.filter(item => item !== resultList[0])
                 const randomNum = Math.floor(Math.random() * filteredArr.length);
                 resultList.push(filteredArr[randomNum])
-                console.log(resultList)
             } else if (i === 2) {
                 const filteredArr = newRandomList.filter(item => item !== resultList[0] && item !== resultList[1])
                 const randomNum = Math.floor(Math.random() * filteredArr.length);
@@ -50,22 +53,52 @@ const Level: FC <Props> = (props) => {
                 resultList.push(filteredArr[randomNum])
             }
         }
-        console.log(resultList)
         setRandomList(resultList)
     }, [props.country])
+
     return (
         <div>
             <ul>
-                {randomList.map((item, index) => <li key={index} onClick={() => {
-                    if (props.country === item) {
-                        setRight('Right!')
+                {randomList.map((item, index) => {
+                    if (ask === false) {
+                        return <li key={index} onClick={() => {
+                            if (item === props.country) {                               
+                                setAsk(true)
+                                dispatch({type: 'PLUS'})
+                                setTimeout(() => {
+                                    props.setQues(props.ques + 1)
+                                    setAsk(false)
+                                }, 1000)
+                            } else {
+                                setAsk(true)
+                                setTimeout(() => {
+                                    props.setQues(props.ques + 1)
+                                    setAsk(false)
+                                }, 1000)
+                            }
+                        }}>
+                            <div>
+                                <p>{item}</p>
+                            </div>
+                        </li>
                     } else {
-                        setRight('No')
-                    }                
-                }}>{item}</li>)}
+                        if (item === props.country) {
+                            return <li key={index}>
+                                <div className="true-country">
+                                    <p>{item}</p>
+                                </div>
+                            </li>
+                        } else {
+                            return <li key={index}>
+                                <div className="false-country">
+                                    <p>{item}</p>
+                                </div>
+                            </li>
+                        }
+                    }
+                })}
             </ul>
-            <img src= {props.img}/>   
-            {right}        
+            <img src= {props.img}/>        
         </div>
     )
 }

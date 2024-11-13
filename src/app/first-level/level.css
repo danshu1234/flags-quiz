@@ -1,0 +1,12 @@
+
+.false-country{
+    width: 250px;
+    height: 60;
+    background-color: red;
+}
+
+.true-country{
+    width: 250px;
+    height: 60;
+    background-color: green;
+}
