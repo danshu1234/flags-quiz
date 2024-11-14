@@ -66,13 +66,13 @@ const Level: FC <Props> = (props) => {
                                 setAsk(true)
                                 dispatch({type: 'PLUS'})
                                 setTimeout(() => {
-                                    props.setQues(props.ques + 1)
+                                    props.setQues()
                                     setAsk(false)
                                 }, 1000)
                             } else {
                                 setAsk(true)
                                 setTimeout(() => {
-                                    props.setQues(props.ques + 1)
+                                    props.setQues()
                                     setAsk(false)
                                 }, 1000)
                             }
