@@ -2,26 +2,23 @@
 
 import { FC } from "react"
 import Link from "next/link";
-import { useSelector } from "react-redux";
-
-interface Store {
-    points: number,
-    isOpenSecondLevel: boolean,
-    isOpenThirdLevel: boolean,
-}
 
 const Homepage: FC = () => {
-  const isOpenSecondLevel = useSelector((state: Store) => state.isOpenSecondLevel)
-  const isOpenThirdLevel = useSelector((state: Store) => state.isOpenThirdLevel)
   let btnToSecondLevel;
   let btnToThirdLevel;
-   if (isOpenSecondLevel) {
+
+
+  const openSecond = localStorage.getItem('openSecond')
+
+   if (openSecond === 'true') {
     btnToSecondLevel = <Link href={'/second-level'}><button>2 уровень</button></Link>
    } else {
     btnToSecondLevel = <button>2 уровень</button>
    }
 
-   if (isOpenThirdLevel) {
+  const openThird = localStorage.getItem('openThird')
+
+   if (openThird === 'true') {
     btnToThirdLevel = <Link href={'/third-level'}><button>3 уровень</button></Link>
    } else {
     btnToThirdLevel = <button>3 уровень</button>

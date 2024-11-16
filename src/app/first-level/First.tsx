@@ -64,9 +64,16 @@ const FirstLevel: FC = () => {
     }  
 
     useEffect(() => {
+        console.log(points)
+    }, [points])
+      
+    useEffect(() => {
         if (ques === 11) {
             if (points > 7) {
-                dispatch({type: 'OPEN_SECOND_LEVEL'})
+                localStorage.setItem('openSecond', 'true')
+                document.cookie = 'second=true'
+            } else {
+                dispatch({type: 'NULL_ONE'})
             }
         }
     }, [ques])

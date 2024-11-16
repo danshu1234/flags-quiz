@@ -54,7 +54,15 @@ const Second: FC = () => {
         useEffect(() => {
             if (ques === 6) {
                 if (points2 > 3) {
-                    dispatch({type: 'OPEN_THIRD_LEVEL'})
+                    localStorage.setItem('openThird', 'true')
+                    const days = 7;
+                    const date = new Date();
+                    date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+                    const expires = "expires=" + date.toUTCString();
+                    document.cookie = `third=true; ${expires}; path=/`;
+
+                } else {
+                    dispatch({type: 'NULL_TWO'})
                 }
             }
         }, [ques])

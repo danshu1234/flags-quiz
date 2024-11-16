@@ -1,0 +1,31 @@
+
+.dropped-el{
+    width: 100px;
+    height: 30px;
+    border: 1px dotted black;
+    margin-left: 150px;
+}
+
+.countries-list{
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+}
+
+.country{
+    margin-left: 200px;
+}
+
+.drop-contain{
+    display: flex;
+    margin-top: 10%;
+}
+
+.flag{
+    width: 120px;
+    margin-left: 160px;
+}
+
+.flags-contain{
+    margin-top: 10%;
+}
