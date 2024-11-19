@@ -1,9 +1,10 @@
 import { FC } from "react";
 import Third from "./Third";
+import './third.css'
 
 const ThirdLevel: FC = () => {
     return (
-        <div>
+        <div className="main-third">
             <Third/>
         </div>
     )
